@@ -1,0 +1,66 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow: hidden;
+}
+
+body {
+    position: relative;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+.overlay {
+    position: relative;
+    z-index: 3;
+    /*height: 100vh;*/
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    position: relative;
+    top: 1vh;
+    height: 3rem;
+}
+
+.socials {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    bottom: -95vh;
+    padding: 1rem 0.5rem;
+}
+
+.socials > img {
+    height: 1.8rem;
+    padding: 0.3rem;
+    cursor: pointer;
+}
+
+.sndcld {
+    height: 2.2rem !important;
+}
+
+.ig {
+    height: 1.7rem !important;
+}
+
+.jsscene {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
