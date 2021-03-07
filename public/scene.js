@@ -16,12 +16,23 @@ import { LuminosityShader } from '/jsm/shaders/LuminosityShader.js'
         var renderer;
 
         function init(){
-            
             scene = new THREE.Scene;
 
             camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 500, 10000);
             camera.position.set(0, 900, 1600);
             camera.lookAt(new THREE.Vector3(0,0,0));
+
+            const loadingManager = new THREE.LoadingManager(() => {
+
+                const loadingScreen = document.querySelector('loading-screen');
+                document.querySelector('.loading-wrapper').parentElement.removeChild(document.querySelector('.loading-wrapper'));
+                //loadingScreen.classList.add('fade-out');
+            
+                // optional: remove loader from DOM via event listener
+                loadingScreen.addEventListener('transitionend', onTransitionEnd);
+            
+            });
+
 
             scene.fog = new THREE.Fog( 0x000000, 300, 30000 );
 
@@ -58,9 +69,9 @@ import { LuminosityShader } from '/jsm/shaders/LuminosityShader.js'
 			effect1.uniforms[ 'scale' ].value = 1000;
 			//composer.addPass( effect1 );
 
-				const effect2 = new ShaderPass( RGBShiftShader );
-				effect2.uniforms[ 'amount' ].value = 0.015;
-				composer.addPass( effect2 );
+			const effect2 = new ShaderPass( RGBShiftShader );
+			effect2.uniforms[ 'amount' ].value = 0.015;
+			composer.addPass( effect2 );
             //composer.addPass(new DotScreenPass());
 
             composer.addPass(new ShaderPass(LuminosityShader));
@@ -114,7 +125,7 @@ import { LuminosityShader } from '/jsm/shaders/LuminosityShader.js'
             }
 
 
-            var loader = new GLTFLoader();
+            var loader = new GLTFLoader( loadingManager );
             loader.load('scene.gltf', function(gltf){
                 br8s = gltf.scene;
                 mesh = gltf.scene.children[0];
