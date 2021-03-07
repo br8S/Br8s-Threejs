@@ -23,14 +23,11 @@ import { LuminosityShader } from '/jsm/shaders/LuminosityShader.js'
             camera.lookAt(new THREE.Vector3(0,0,0));
 
             const loadingManager = new THREE.LoadingManager(() => {
+                document.querySelector('.loading-wrapper').classList.add('fade-out');
 
-                const loadingScreen = document.querySelector('loading-screen');
-                document.querySelector('.loading-wrapper').parentElement.removeChild(document.querySelector('.loading-wrapper'));
-                //loadingScreen.classList.add('fade-out');
-            
-                // optional: remove loader from DOM via event listener
-                loadingScreen.addEventListener('transitionend', onTransitionEnd);
-            
+                document.querySelector('.loading-wrapper').addEventListener('transitionend', onTransitionEnd);
+                //document.querySelector('.loading-wrapper').parentElement.removeChild(document.querySelector('.loading-wrapper'));
+
             });
 
 
@@ -201,3 +198,7 @@ import { LuminosityShader } from '/jsm/shaders/LuminosityShader.js'
         }
 
         init();
+
+        function onTransitionEnd(event) {
+            event.target.remove();
+        }
