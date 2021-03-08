@@ -21,7 +21,7 @@ body {
 .overlay {
     position: relative;
     z-index: 3;
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
 
@@ -70,13 +70,14 @@ body {
 }
 
 svg path {
-    fill: white;
+    fill: gainsboro;
     opacity: 100%;
-    transition: fill 0.9s, opacity 0.9s;
+    transition: fill 0.9s, opacity 0.6s;
 }
 
 svg:hover path {
-    fill: rgb(210, 255, 119);
+    fill: rgb(182, 250, 47);
+    opacity: 70%;
 }
 
 .jsscene {
@@ -106,5 +107,5 @@ svg:hover path {
 
 .loading-wrapper.fade-out {
     opacity: 0%;
-  }
+}
   

@@ -30,7 +30,6 @@ import { LuminosityShader } from '/jsm/shaders/LuminosityShader.js'
 
             });
 
-
             scene.fog = new THREE.Fog( 0x000000, 300, 30000 );
 
             hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 4)
@@ -76,8 +75,20 @@ import { LuminosityShader } from '/jsm/shaders/LuminosityShader.js'
             object = new THREE.Object3D();
 			scene.add( object );
 
+            object1 = new THREE.Object3D();
+			scene.add( object1 );
+
+            object2 = new THREE.Object3D();
+			scene.add( object2 );
+
 			const geometry = new THREE.SphereGeometry( 0.3, 4, 4 );
 			const material = new THREE.MeshPhongMaterial( { color: 0xC0C0C0} );
+
+            const geometry1 = new THREE.SphereGeometry( 0.3, 4, 4 );
+			const material1 = new THREE.MeshPhongMaterial( { color: 0xC0C0C0} );
+
+            const geometry2 = new THREE.SphereGeometry( 0.25, 4, 4 );
+			const material2 = new THREE.MeshPhongMaterial( { color: 0xC8F1BE} );
 
 			for ( let i = 0; i < 100; i ++ ) {
 
@@ -87,40 +98,21 @@ import { LuminosityShader } from '/jsm/shaders/LuminosityShader.js'
 				mesh.rotation.set( Math.random() * 2, Math.random() * 2, Math.random() * 2 );
 				mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 20;
 				object.add( mesh );
+
+                const mesh1 = new THREE.Mesh( geometry1, material1 );
+				mesh1.position.set( Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5 ).normalize() + 2000 ;
+				mesh1.position.multiplyScalar( Math.random() * 1000 );
+				mesh1.rotation.set( Math.random() * 2, Math.random() * 2, Math.random() * 2 );
+				mesh1.scale.x = mesh1.scale.y = mesh1.scale.z = Math.random() * 20;
+				object1.add( mesh1 );
+
+                const mesh2 = new THREE.Mesh( geometry2, material2 );
+				mesh2.position.set( Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5 ).normalize() ;
+				mesh2.position.multiplyScalar( Math.random() * 1000 );
+				mesh2.rotation.set( Math.random() * 2, Math.random() * 2, Math.random() * 2 );
+				mesh2.scale.x = mesh2.scale.y = mesh2.scale.z = Math.random() * 20;
+				object2.add( mesh2 );
             }
-
-            object1 = new THREE.Object3D();
-			scene.add( object1 );
-
-			const geometry1 = new THREE.SphereGeometry( 0.3, 4, 4 );
-			const material1 = new THREE.MeshPhongMaterial( { color: 0xC0C0C0} );
-
-			for ( let i = 0; i < 100; i ++ ) {
-
-				const mesh = new THREE.Mesh( geometry1, material1 );
-				mesh.position.set( Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5 ).normalize() + 2000 ;
-				mesh.position.multiplyScalar( Math.random() * 1000 );
-				mesh.rotation.set( Math.random() * 2, Math.random() * 2, Math.random() * 2 );
-				mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 20;
-				object1.add( mesh );
-            }
-
-            object2 = new THREE.Object3D();
-			scene.add( object2 );
-
-			const geometry2 = new THREE.SphereGeometry( 0.25, 4, 4 );
-			const material2 = new THREE.MeshPhongMaterial( { color: 0xC8F1BE} );
-
-			for ( let i = 0; i < 100; i ++ ) {
-
-				const mesh = new THREE.Mesh( geometry2, material2 );
-				mesh.position.set( Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5 ).normalize() ;
-				mesh.position.multiplyScalar( Math.random() * 1000 );
-				mesh.rotation.set( Math.random() * 2, Math.random() * 2, Math.random() * 2 );
-				mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 20;
-				object2.add( mesh );
-            }
-
 
             var loader = new GLTFLoader( loadingManager );
             loader.load('scene.gltf', function(gltf){
@@ -156,14 +148,6 @@ import { LuminosityShader } from '/jsm/shaders/LuminosityShader.js'
             materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
             materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
             materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
-
-        
-            materialArray.push(new THREE.MeshBasicMaterial({map: texture_rt}));
-            materialArray.push(new THREE.MeshBasicMaterial({map: texture_lf}));
-            materialArray.push(new THREE.MeshBasicMaterial({map: texture_up}));
-            materialArray.push(new THREE.MeshBasicMaterial({map: texture_dn}));
-            materialArray.push(new THREE.MeshBasicMaterial({map: texture_bk}));
-            materialArray.push(new THREE.MeshBasicMaterial({map: texture_ft}));
 
             for (let i = 0; i < 6; i++){
                 materialArray[i].side = THREE.BackSide;
