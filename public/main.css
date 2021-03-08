@@ -66,10 +66,10 @@ body {
 }
 
 .loading {
-    background-color: black;
-    background-image: url('images/loader.gif');
+    background-color: rgb(24, 24, 24);
+    background-image: url('images/circle.gif');
     background-position: center;
-    background-size: contain;
+    background-size: 20rem;
     background-repeat: no-repeat;
     position: absolute;
     z-index: 4; 
@@ -77,7 +77,11 @@ body {
     width: 100%;
 }
 
+.loading-wrapper {
+    transition: opacity 3s ease-out;
+}
+
 .loading-wrapper.fade-out {
-    opacity: 0;
+    opacity: 0%;
   }
   
