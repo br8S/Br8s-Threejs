@@ -59,7 +59,7 @@ body {
     align-items: center;
     left: 0;
     bottom: 0;
-    margin: 0.5rem 0.5rem;
+    margin: 3.5rem 0.5rem;
 }
 
 .socials > svg {
@@ -76,8 +76,32 @@ svg path {
 }
 
 svg:hover path {
-    fill: rgb(182, 250, 47);
+    fill: #c5ff29;
     opacity: 70%;
+}
+
+.footer {
+    color: #c5ff29;
+    font-family: monospace;
+    height: 3rem;
+    width: 100%;
+    left: 0; 
+    bottom: 0;
+    background-image: linear-gradient(rgba(2, 2, 2, 0.539), rgba(2,2,2,0.539));
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.info > a {
+    color: #c5ff29;
+}
+
+.info {
+    font-size: 11px;
 }
 
 .jsscene {
